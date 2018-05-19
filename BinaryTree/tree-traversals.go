@@ -8,60 +8,60 @@ type node struct {
 	right *node
 }
 
-type bst struct {
+type bt struct {
 	root *node
 }
 
-func (bst *bst) printPreorder(node *node) {
+func (bt *bt) printPreorder(node *node) {
 	if node == nil {
 		return
 	}
 
 	fmt.Print(node.data, " ")
 
-	bst.printPreorder(node.left)
+	bt.printPreorder(node.left)
 
-	bst.printPreorder(node.right)
+	bt.printPreorder(node.right)
 }
 
-func (bst *bst) printInorder(node *node) {
+func (bt *bt) printInorder(node *node) {
 	if node == nil {
 		return
 	}
 
-	bst.printInorder(node.left)
+	bt.printInorder(node.left)
 
 	fmt.Print(node.data, " ")
 
-	bst.printInorder(node.right)
+	bt.printInorder(node.right)
 }
 
-func (bst *bst) printPostorder(node *node) {
+func (bt *bt) printPostorder(node *node) {
 	if node == nil {
 		return
 	}
 
-	bst.printPostorder(node.left)
+	bt.printPostorder(node.left)
 
-	bst.printPostorder(node.right)
+	bt.printPostorder(node.right)
 
 	fmt.Print(node.data, " ")
 }
 
 func main() {
-	BST := bst{root: &node{data: 1}}
+	BT := bt{root: &node{data: 1}}
 
-	BST.root.left       = &node{data: 2}
-	BST.root.right      = &node{data: 3} 
-	BST.root.left.left  = &node{data: 4}
-	BST.root.left.right = &node{data: 5}
+	BT.root.left       = &node{data: 2}
+	BT.root.right      = &node{data: 3} 
+	BT.root.left.left  = &node{data: 4}
+	BT.root.left.right = &node{data: 5}
 
 	fmt.Println("Preorder traversal of binary tree is")
-	BST.printPreorder(BST.root)
+	BT.printPreorder(BT.root)
 
 	fmt.Println("\nInorder traversal of binary tree is")
-	BST.printInorder(BST.root)
+	BT.printInorder(BT.root)
 
 	fmt.Println("\nPostorder traversal of binary tree is")
-	BST.printPostorder(BST.root)
+	BT.printPostorder(BT.root)
 }

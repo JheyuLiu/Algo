@@ -8,17 +8,17 @@ type node struct {
 	right *node
 }
 
-type bst struct {
+type bt struct {
 	root *node
 }
 
-func (bst *bst) getHight(node *node) int {
+func (bt *bt) getHight(node *node) int {
 	if node == nil {
 		return 0
 	}
 
-	left_hight  := bst.getHight(node.left) + 1
-	right_hight := bst.getHight(node.right) + 1
+	left_hight  := bt.getHight(node.left) + 1
+	right_hight := bt.getHight(node.right) + 1
 
 	var max_hight int
 	if left_hight >= right_hight {
@@ -30,7 +30,7 @@ func (bst *bst) getHight(node *node) int {
 	return max_hight
 }
 
-func (bst *bst) printGivenLevel(node *node, level int) {
+func (bt *bt) printGivenLevel(node *node, level int) {
 	if node == nil {
 		return
 	}
@@ -38,26 +38,26 @@ func (bst *bst) printGivenLevel(node *node, level int) {
 	if level == 1 {
 		fmt.Print(node.data, " ")
 	} else if level > 1 {
-		bst.printGivenLevel(node.left, level-1)
-		bst.printGivenLevel(node.right, level-1)
+		bt.printGivenLevel(node.left, level-1)
+		bt.printGivenLevel(node.right, level-1)
 	}
 }
 
-func (bst *bst) printLevelOrder(node *node) {
-	height := bst.getHight(node)
+func (bt *bt) printLevelOrder(node *node) {
+	height := bt.getHight(node)
 	for i := 1; i <= height; i++ {
-		bst.printGivenLevel(node, i)
+		bt.printGivenLevel(node, i)
 	}
 }
 
 func main() {
-	BST := bst{root: &node{data: 1}}
+	BT := bt{root: &node{data: 1}}
 
-	BST.root.left       = &node{data: 2}
-	BST.root.right      = &node{data: 3} 
-	BST.root.left.left  = &node{data: 4}
-	BST.root.left.right = &node{data: 5}
+	BT.root.left       = &node{data: 2}
+	BT.root.right      = &node{data: 3} 
+	BT.root.left.left  = &node{data: 4}
+	BT.root.left.right = &node{data: 5}
 
 	fmt.Println("Level Order traversal of binary tree is")
-	BST.printLevelOrder(BST.root)
+	BT.printLevelOrder(BT.root)
 }

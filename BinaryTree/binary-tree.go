@@ -8,19 +8,19 @@ type node struct {
 	right *node
 }
 
-type bst struct {
+type bt struct {
 	root *node
 }
 
 func main() {
-	BST := bst{root: &node{data: 1}}
+	BT := bt{root: &node{data: 1}}
 
-	BST.root.left      = &node{data: 2}
-	BST.root.right     = &node{data: 3} 
-	BST.root.left.left = &node{data: 4}
+	BT.root.left      = &node{data: 2}
+	BT.root.right     = &node{data: 3} 
+	BT.root.left.left = &node{data: 4}
 
-	fmt.Println(BST.root.data)
-	fmt.Println(BST.root.left.data)
-	fmt.Println(BST.root.right.data)
-	fmt.Println(BST.root.left.left.data)
+	fmt.Println(BT.root.data)
+	fmt.Println(BT.root.left.data)
+	fmt.Println(BT.root.right.data)
+	fmt.Println(BT.root.left.left.data)
 }
