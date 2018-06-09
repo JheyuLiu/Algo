@@ -14,10 +14,7 @@ func searchroot(in []int, root int, size int) int {
 
 func printPostOrder(in []int, pre []int, size int) {
 	root := searchroot(in, pre[0], size)
-    //fmt.Println(in)
-    //fmt.Println(pre)
-    //fmt.Println("size: ", size)
-    //fmt.Println("root: ", root)
+
     if root != 0 {
     	tmp_pre := pre[1:]
     	printPostOrder(in, tmp_pre, root)
