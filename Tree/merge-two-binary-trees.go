@@ -11,7 +11,7 @@ func mergeTrees(t1 *TreeNode, t2 *TreeNode) *TreeNode {
         return t2
     }
     if t2 == nil {
-	return t1
+	    return t1
     }
 	
     new_node := &TreeNode{Val: t1.Val + t2.Val}
