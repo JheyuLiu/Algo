@@ -1,7 +1,3 @@
-package main
-
-import "fmt"
-
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -10,13 +6,6 @@ import "fmt"
  *     Right *TreeNode
  * }
  */
-type TreeNode struct {
-    Val int
-    Left *TreeNode
-    Right *TreeNode
-}
-
-
 func averageOfLevels(root *TreeNode) []float64 {
     var res []float64
     var count []int
@@ -46,16 +35,4 @@ func average(node *TreeNode, res *[]float64, i int, count *[]int) {
 
     average(node.Left, res, i+1, count)
     average(node.Right, res, i+1, count)
-}
-
-func main() {
-    root           := &TreeNode{Val: 3}
-    root.Left       = &TreeNode{Val: 9}
-    root.Right      = &TreeNode{Val: 20}
-    root.Right.Left  = &TreeNode{Val: 15}
-    root.Right.Right = &TreeNode{Val: 7}
-
-    res := averageOfLevels(root)
-
-    fmt.Println(res)
 }
