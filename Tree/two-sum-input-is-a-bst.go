@@ -23,11 +23,16 @@ func findTarget(root *TreeNode, k int) bool {
         return false
     }
 
-    for i:=0; i<len(list); i++ {
-        for j:=0; j<len(list); j++ {
-            if list[i]+list[j] == k && i != j {
-                return true
-            }
+    left := 0
+    right := len(list)-1
+    for ; left<right; {
+        sum := list[left]+list[right]
+        if sum > k {
+            right = right-1
+        }else if sum < k {
+            left = left+1
+        }else {
+            return true
         }
     }
 
