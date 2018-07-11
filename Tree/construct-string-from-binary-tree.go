@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 import "strconv"
+import "bytes"
+import "github.com/golang-collections/collections/stack"
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -17,36 +19,45 @@ type TreeNode struct {
 }
 
 func tree2str(t *TreeNode) string {
-	var str string
-	result := composeStr(t, &str)
-	return result
-}
-
-func composeStr(node *TreeNode, str *string) string {
-	if node == nil {
+	if t == nil {
 		return ""
 	}
-    (*str) = (*str) + strconv.Itoa(node.Val)
+	stk := stack.New()
+	vmap := make(map[*TreeNode]int)
+    var buffer bytes.Buffer
 
-    if node.Left != nil || (node.Left == nil && node.Right != nil) {
-    	(*str) = (*str) + "("
-    	composeStr(node.Left, str)
-    	(*str) = (*str) + ")"
-    }
-    if node.Right != nil {
-    	(*str) = (*str) + "("
-    	composeStr(node.Right, str)
-    	(*str) = (*str) + ")"
+    stk.Push(t)
+    for stk.Len() > 0 {
+        node := stk.Peek()
+        _, visited := vmap[node.(*TreeNode)]
+        if visited {
+        	stk.Pop()
+        	buffer.WriteString(")")
+        }else {
+        	vmap[node.(*TreeNode)] = 0
+        	buffer.WriteString("(")
+            buffer.WriteString(strconv.Itoa(node.(*TreeNode).Val))
+
+        	if node.(*TreeNode).Left == nil && node.(*TreeNode).Right != nil {
+        		buffer.WriteString("()")
+        	}
+        	if node.(*TreeNode).Right != nil {
+        		stk.Push(node.(*TreeNode).Right)
+        	}
+        	if node.(*TreeNode).Left != nil {
+        		stk.Push(node.(*TreeNode).Left)
+            }
+        }
     }
 
-    return *str
+    return buffer.String()
 }
 
 func main() {
 	root := &TreeNode{Val: 1}
 	root.Left = &TreeNode{Val: 2}
 	root.Right = &TreeNode{Val: 3}
-	root.Left.Left = &TreeNode{Val: 4}
+	root.Left.Right = &TreeNode{Val: 4}
 
 	fmt.Println(tree2str(root))
 }
