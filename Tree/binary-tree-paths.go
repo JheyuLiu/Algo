@@ -1,8 +1,3 @@
-package main
-
-import "fmt"
-import "strconv"
-//import "strings"
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -11,11 +6,6 @@ import "strconv"
  *     Right *TreeNode
  * }
  */
-type TreeNode struct {
-    Val int
-    Left *TreeNode
-    Right *TreeNode
-}
 
 func PathsRecur(str string, res []string, root *TreeNode) []string {
 	if root == nil {
@@ -48,13 +38,4 @@ func binaryTreePaths(root *TreeNode) []string {
     res = PathsRecur(str, res, root)
     
     return res
-}
-
-func main() {
-	root := &TreeNode{Val: 1}
-	root.Left = &TreeNode{Val: 2}
-	root.Right = &TreeNode{Val: 3}
-	root.Left.Right = &TreeNode{Val: 5}
-
-	fmt.Println(binaryTreePaths(root))
 }
